@@ -113,6 +113,10 @@ class BinarySearchTree {
   DFSInorder() {
     return traverseInorder(this.root, []);
   }
+
+  DFSPreorder() {
+    return traversePreorder(this.root, []);
+  }
 }
 
 function traverseInorder(node, list) {
@@ -122,6 +126,18 @@ function traverseInorder(node, list) {
   list.push(node.value);
   if (node.right) {
     traverseInorder(node.right, list);
+  }
+  return list;
+}
+
+function traversePreorder(node, list) {
+  list.push(node.value);
+  if (node.left) {
+    traversePreorder(node.left, list);
+  }
+
+  if (node.right) {
+    traversePreorder(node.right, list);
   }
   return list;
 }
@@ -139,6 +155,7 @@ console.log(JSON.stringify(traverse(tree.root)));
 console.log(tree.breadthFirstSearch());
 console.log(tree.breadthFirstSearchR([tree.root], []));
 console.log(tree.DFSInorder());
+console.log(tree.DFSPreorder());
 
 function traverse(node) {
   const tree = { value: node.value };
